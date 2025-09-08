@@ -47,7 +47,7 @@ This assignment includes client implementations for several key Application Laye
 - `client_ftp.py` — FTP client code
 - `client_dns.py` — DNS client code
 - `client_ldap.py` — LDAP client code
-- `cnlab2.pdf` — The Assignment File (assuming it's similar to `cnlab1.pdf`)
+- `cnlab2.pdf` — The Assignment File
 
 ---
 
