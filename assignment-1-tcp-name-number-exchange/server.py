@@ -30,7 +30,7 @@ class Server:
             raise ValueError("[SERVER] Invalid number. Exiting.")
         logging.info("Initialized with name=%s, number=%d, backlog=%d",
                      self.name, self.server_number, self.backlog)
-    def client_handler(self, client: socket.socket, addr):
+    def client_handler(self, client: socket.socket, addr: tuple[str, int]):
         logging.info("Handling new client from %s", addr)
         try:
             # Receive: name length + name + integer

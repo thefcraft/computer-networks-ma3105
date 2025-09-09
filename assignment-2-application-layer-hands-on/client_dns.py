@@ -3,6 +3,8 @@ from typing import Literal
 import logging
 
 def log_dns_query(domain: str, record_type: Literal["A", "MX", "CNAME"]) -> set[str] | None: 
+    # resolver.get_default_resolver().nameservers = ['8.8.8.8', '8.8.4.4']
+    logging.info(f"NameServers: {resolver.get_default_resolver().nameservers}")
     try:
         answers = resolver.resolve(domain, record_type)
         logging.info(f"DNS {record_type} records for {domain}:")

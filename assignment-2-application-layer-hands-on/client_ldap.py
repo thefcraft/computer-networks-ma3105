@@ -19,18 +19,18 @@ def ldap_client():
     server = Server(LDAP_SERVER, get_info=ALL)
     conn = Connection(server, user=USERNAME, password=PASSWORD)
     
-    if not conn.bind():
+    if not conn.bind(): # type: ignore
         logging.error("Failed to bind to LDAP server.")
         return
     
     logging.info("LDAP bind successful.")
     
     # Search example
-    conn.search("dc=example,dc=com", "(objectClass=person)", attributes=["cn", "mail"])
-    for entry in conn.entries:
-        logging.info(entry)
+    conn.search("dc=example,dc=com", "(objectClass=person)", attributes=["cn", "mail"]) # type: ignore
+    for entry in conn.entries: # type: ignore
+        logging.info(entry) # type: ignore
         
-    conn.unbind()
+    conn.unbind() # type: ignore
     
 def main():
     try:

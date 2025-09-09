@@ -19,14 +19,15 @@ class Readable(Protocol): # ignore it...
 class Writable(Protocol): # ignore it...
     def write(self, data: bytes, /) -> int: ...
     
-def ftp_client(upload_file: Readable, download_file: Writable) -> None:
+def ftp_client(upload_file: Readable, download_file: Writable, set_pasv: bool = False) -> None:
     logging.info("Connecting to FTP server...")
     
     ftp = ftplib.FTP()
     ftp.connect(FTP_SERVER, port=21, timeout=20)
     
-    ftp.set_pasv(True) # usually fixes firewall issue... 
-    # ftp.set_pasv => Use passive or active mode for data transfers. With a false argument, use the normal PORT mode, With a true argument, use the PASV command.
+    if set_pasv:
+        ftp.set_pasv(True) # usually fixes firewall issue... 
+        # ftp.set_pasv => Use passive or active mode for data transfers. With a false argument, use the normal PORT mode, With a true argument, use the PASV command.
     
     ftp.login(USERNAME, PASSWORD)
     logging.info("Login successful.")
@@ -41,7 +42,7 @@ def ftp_client(upload_file: Readable, download_file: Writable) -> None:
     
     # List directory contents
     logging.info("Listing directory contents:")
-    ftp.retrlines("LIST")
+    ftp.retrlines("LIST", callback=lambda line: logging.info(f"\t{line}"))
     
     ftp.quit()
 

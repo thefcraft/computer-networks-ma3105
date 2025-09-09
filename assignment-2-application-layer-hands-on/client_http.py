@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
 import logging
-from typing import Literal, Callable, Iterable
+from typing import Literal
 
 async def request_and_log_site_info(session: aiohttp.ClientSession, 
                         method: Literal['get', 'post'],
