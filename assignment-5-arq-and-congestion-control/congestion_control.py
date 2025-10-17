@@ -48,12 +48,15 @@ def tcp_congestion_control_simulation(total_rounds_count: int, initial_ssthresh:
     plt.xticks(range(1, total_rounds_count + 1))
     
     # Save the plot
-    plt.savefig('cwnd_plot.png')
-    print("\nPlot saved as cwnd_plot.png")
+    plt.savefig('congestion_control_cwnd_plot.png')
+    print("\nPlot saved as congestion_control_cwnd_plot.png")
     plt.show()
 
 
 if __name__ == "__main__":
+    import os
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    
     TOTAL_ROUNDS_COUNT = 25
     INITIAL_SSTHRESH = 16
     LOSS_EVENTS_AT_ROUNDS = [8, 17] # Simulate packet loss (timeout) at these specific rounds

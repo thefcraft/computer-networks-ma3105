@@ -28,7 +28,7 @@ def ldap_client():
     # Search example
     conn.search("dc=example,dc=com", "(objectClass=person)", attributes=["cn", "mail"]) # type: ignore
     for entry in conn.entries: # type: ignore
-        logging.info(entry) # type: ignore
+        logging.info(str(entry).strip('\n')) # type: ignore
         
     conn.unbind() # type: ignore
     
